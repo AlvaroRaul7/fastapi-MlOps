@@ -77,11 +77,19 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      run: terraform fmt -check
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_working_dir: 'terraform'
+        tf_actions_version: 0.14.7
+        tf_actions_subcommand: 'fmt -check'
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_working_dir: 'terraform'
+        tf_actions_version: 0.14.7
+        tf_actions_subcommand: 'plan'
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
