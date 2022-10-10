@@ -81,7 +81,7 @@ jobs:
       with:
         tf_actions_working_dir: 'terraform'
         tf_actions_version: 0.14.7
-        tf_actions_subcommand: 'fmt -check'
+        tf_actions_subcommand: 'fmt'
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
