@@ -27,7 +27,7 @@ resource "google_cloud_run_service" "run_service" {
   template {
     spec {
       containers {
-        image = var.gcp_path
+        image = var.gcr_path
       }
     }
   }
