@@ -38,7 +38,7 @@ resource "google_cloud_run_service" "run_service" {
   template {
     spec {
       containers {
-        image = var.gcr_path+":"+var.github_sha
+        image = var.gcr_path + ":" + var.github_sha
       }
     }
   }
