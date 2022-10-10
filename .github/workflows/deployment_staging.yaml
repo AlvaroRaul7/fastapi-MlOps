@@ -101,7 +101,7 @@ jobs:
       with:
           tf_actions_working_dir: 'terraform'
           tf_actions_version: 0.14.7
-          tf_actions_subcommand: 'apply --auto-approve'
-          args: '-var=gcr_path=gcr.io/cloud-projects-365117/delay-flights -var=github_sha=${{ github.sha }}'
+          tf_actions_subcommand: 'apply'
+          args: '-auto-approve -var=gcr_path=gcr.io/cloud-projects-365117/delay-flights -var=github_sha=${{ github.sha }}'
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
