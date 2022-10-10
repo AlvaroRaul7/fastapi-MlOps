@@ -8,7 +8,7 @@ terraform {
 }
 
 variable "gcr_path" {
-  type = string
+  type        = string
   description = "The gcr path."
 }
 
