@@ -40,12 +40,12 @@ resource "google_cloud_run_service" "run_service" {
       containers {
         image = join(":", [var.gcr_path, var.github_sha])  
       }
-       ports {
-        container_port = 80
-      }
     }
   }
-
+  ports {
+    name = "http1"
+    port = 80
+  }
   traffic {
     percent         = 100
     latest_revision = true
