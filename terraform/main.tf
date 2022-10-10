@@ -42,10 +42,6 @@ resource "google_cloud_run_service" "run_service" {
       }
     }
   }
-  ports {
-    name = "http1"
-    port = 80
-  }
   traffic {
     percent         = 100
     latest_revision = true
