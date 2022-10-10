@@ -98,6 +98,11 @@ jobs:
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      uses: hashicorp/terraform-github-actions@master
+      with:
+          tf_actions_working_dir: 'terraform'
+          tf_actions_version: 0.14.7
+          tf_actions_subcommand: 'apply'
+          args: '-var=gcr_path=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA'
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
