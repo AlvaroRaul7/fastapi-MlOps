@@ -7,6 +7,11 @@ terraform {
   }
 }
 
+variable "gcr_path" {
+  type = string
+  description = "The gcr path."
+}
+
 provider "google" {
   # Replace `PROJECT_ID` with your project
   project = "cloud-projects-365117"
