@@ -12,6 +12,12 @@ variable "gcr_path" {
   description = "The gcr path."
 }
 
+variable "github_sha" {
+  type        = string
+  description = "The gcr path."
+}
+
+
 provider "google" {
   # Replace `PROJECT_ID` with your project
   project = "cloud-projects-365117"
@@ -32,7 +38,7 @@ resource "google_cloud_run_service" "run_service" {
   template {
     spec {
       containers {
-        image = var.gcr_path
+        image = var.gcr_path+":"+var.github_sha
       }
     }
   }
