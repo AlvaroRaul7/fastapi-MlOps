@@ -38,12 +38,10 @@ resource "google_cloud_run_service" "run_service" {
   template {
     spec {
       containers {
-        image = join(":", [var.gcr_path, var.github_sha])
-        
+        image = join(":", [var.gcr_path, var.github_sha])  
       }
       ports {
-        container_port = 80
-        
+        container_port = 80     
       }
     }
   }
