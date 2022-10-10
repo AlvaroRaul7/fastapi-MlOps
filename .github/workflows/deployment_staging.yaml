@@ -91,6 +91,7 @@ jobs:
         tf_actions_version: 0.14.7
         tf_actions_subcommand: 'plan'
       env:
+        TF_VAR_gcr_path: "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
         GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
       # On push to main, build or change infrastructure according to Terraform configuration files
