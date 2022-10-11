@@ -47,8 +47,8 @@ resource "google_cloud_run_service" "run_service" {
     latest_revision = true
   }
 
-  # Waits for the Cloud Run API to be enabled
-  depends_on = [google_project_service.run_api]
+  # # Waits for the Cloud Run API to be enabled
+  # depends_on = [google_project_service.run_api]
 }
 
 # Allow unauthenticated users to invoke the service
