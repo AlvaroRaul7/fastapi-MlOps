@@ -69,7 +69,7 @@ jobs:
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_working_dir: 'terraform'
-        tf_actions_version: 0.14.1
+        tf_actions_version: 0.14.7
         tf_actions_subcommand: 'init'
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
@@ -87,7 +87,7 @@ jobs:
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_working_dir: 'terraform'
-        tf_actions_version: 0.14.1
+        tf_actions_version: 0.14.7
         tf_actions_subcommand: 'plan'
         args: '-var=gcr_path=gcr.io/cloud-projects-365117/delay-flights -var=github_sha=${{ github.sha }}'
       env:
@@ -106,6 +106,6 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       id: apply
-      run: terraform apply -auto-approve -input=false -var="gcr_path=gcr.io/cloud-projects-365117/delay-flights" -var="github_sha=${{ github.sha }}"
+      run: terraform -chdir=terraform/ apply -auto-approve -input=false -var="gcr_path=gcr.io/cloud-projects-365117/delay-flights" -var="github_sha=${{ github.sha }}"
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
