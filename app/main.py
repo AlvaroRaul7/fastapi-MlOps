@@ -1,18 +1,15 @@
-from typing import Union
+import numpy as np
 
 from fastapi import FastAPI
-
 import pickle
+import sklearn
+from pydantic import BaseModel
+
+class Prediction(BaseModel):
+    test_array: list = []
+    
 
 app = FastAPI()
-
-
-
-
-def load_model():
-    with open("../pickle_model.pkl", "rb") as f:
-        return pickle.load(f)
-    
 
 
 @app.get("/")
@@ -20,9 +17,17 @@ def read_root():
     return {"Hello": "World"}
 
 
+@app.post("/predict/")
+def predict(pred: Prediction):
 
-
-@app.get("/predict/{time}")
-def predict(time: int):
-    model = load_model()
-    return {"time_id": time, "prediction": model.predict(time) }
+    # Load the model
+    file_model = open("pickle_model.pkl","rb")
+    pickled_model = pickle.load(file_model)
+    
+    #Contains a single sample.
+    test_array = np.array(pred.test_array)
+    
+    prediction_result = pickled_model.predict([test_array])
+    print(prediction_result)
+    return {"prediction": prediction_result.tolist()[0]}
+    
