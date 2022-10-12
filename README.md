@@ -32,7 +32,8 @@ Remove the resource `"google_cloud_run_service_iam_member"  "run_all_users"`.
 <img width="675" alt="image" src="https://user-images.githubusercontent.com/39871126/195152688-dae361cd-a87f-4757-beb9-2899c3a32db9.png">
 
 
-Ideally, you can set the iam accounts that can access this api using Google Cloud Run UI or using Terraform.
+Ideally, you can set the iam accounts that can access this api using Google Cloud Run UI or using Terraform. This approach doesn't add any latency to the
+customer because it uses built-in IAM roles and permissions from Google Cloud.
 
 
 ## Terraform 
@@ -55,6 +56,16 @@ All steps are declared in the .github/workflows/workflow.yaml
  3. Run `docker build -t ml-api .` in the root of the project to build the image of the api.
  4. Run  ` docker run -d --name ml -p 80:8080 ml-api ` to create the container using ml-api image built.
  5. Open [localhost](http://localhost/docs) to test the project.
+ 6. On /predict/ post endpoint, you can use this body as an example:
+ 
+   ```  
+  {
+"test_array": [
+0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,0,1,0,1,0,0,1,1,1,0,1,0,1,0]
+
+}
+```
+ 7. You should expect a response 200 with a `"prediction": 0` which means the flight wasn't delayed.
 
 ## Deploy it
 
@@ -74,5 +85,12 @@ All steps are declared in the .github/workflows/workflow.yaml
 
 
 The best approach would be using horizontal scaling. in this case we can create a 2nd Google Cloud Run instance and use load balancing to distribute the traffic between both instances.
+
+## SLO and SLIs
+
+ 1. Availability of 99.95% in the cloud run instance over a year which sets an error budget of 0.5% in case there is any problem in the gcp region.
+ 2. Latency under 200 ms given 50k requests over 45s 
+
+ 
 
  
