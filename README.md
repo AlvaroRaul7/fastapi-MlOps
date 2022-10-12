@@ -32,7 +32,8 @@ Remove the resource `"google_cloud_run_service_iam_member"  "run_all_users"`.
 <img width="675" alt="image" src="https://user-images.githubusercontent.com/39871126/195152688-dae361cd-a87f-4757-beb9-2899c3a32db9.png">
 
 
-Ideally, you can set the iam accounts that can access this api using Google Cloud Run UI or using Terraform.
+Ideally, you can set the iam accounts that can access this api using Google Cloud Run UI or using Terraform. This approach doesn't add any latency to the
+customer because it uses built-in IAM roles and permissions from Google Cloud.
 
 
 ## Terraform 
