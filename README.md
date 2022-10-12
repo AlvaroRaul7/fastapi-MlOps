@@ -69,6 +69,8 @@ All steps are declared in the .github/workflows/workflow.yaml
 
 ### How can we improve the results
 
+
+
 The best approach would be using horizontal scaling. in this case we can create a 2nd Google Cloud Run instance and use load balancing to distribute the traffic between both instances.
 
  
