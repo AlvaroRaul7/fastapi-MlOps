@@ -9,7 +9,7 @@
 - Docker Desktop 
 - Git 
 - Github Account
--  Google Cloud Platform with owner permissions 
+- Google Cloud Platform with owner permissions 
 
 
 ##  Google Cloud Run
@@ -65,9 +65,11 @@ All steps are declared in the .github/workflows/workflow.yaml
 ## Stress Testing
 
   1. On Mac `brew install wrk`
-  2. Run `wrk -t12 -c200 -d45s https://<path-of-the-deployed-project>` to open 12 threads with 200 open http connections during 45 seconds.
+  2. Run `wrk -t12 -c200 -d45s -s request.lua https://mlops-api-backend-1-5gdi5qltoq-uc.a.run.app/predict/` to open 12 threads with 200 open http connections during 45 seconds.
 
 ### How can we improve the results
+
+<img width="1054" alt="image" src="https://user-images.githubusercontent.com/39871126/195390648-94d3663d-7b7f-4abf-8e17-325e8ef9e0c3.png">
 
 
 
