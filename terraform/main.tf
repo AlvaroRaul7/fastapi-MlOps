@@ -32,7 +32,7 @@ resource "google_project_service" "run_api" {
 
 # Create the Cloud Run service
 resource "google_cloud_run_service" "run_service" {
-  name     = "mlops-api-backend-7"
+  name     = "mlops-api-backend-8"
   location = "us-central1"
 
   template {
